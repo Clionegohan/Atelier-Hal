@@ -1,96 +1,248 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  /* 白黒カラーパレット */
+  --color-bg: #000000;
+  --color-text: #ffffff;
+  --color-border: #333333;
+  
+  /* フォント */
+  --font-primary: "Yu Mincho", "Cardinal", serif;
+  --font-secondary: "Cardinal", "Yu Mincho", serif;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  line-height: 1.6;
+  overflow-x: hidden; /* 横スクロール以外を無効化 */
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* 縦スクロール無効化 */
+html {
+  overflow-y: hidden;
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   padding: 2rem;
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-title {
+  font-family: var(--font-secondary);
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-back {
+  background: none;
+  border: none;
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.nav-back:hover {
+  opacity: 0.7;
+}
+
+/* Portfolio Title */
+.portfolio-title {
+  position: fixed;
+  top: 15rem;
+  left: 5rem;
+  z-index: 100;
+  font-family: "Crimson Text", "Times New Roman", serif;
+  font-size: 4rem;
+  font-weight: 100;
+  letter-spacing: 0.03em;
+  line-height: 2.5;
+  opacity: 1;
+  text-transform: uppercase;
+}
+
+/* Gallery Container */
+.gallery-container {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none; /* Firefox */
+}
+
+.gallery-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+.gallery-track {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  padding: 0 2rem;
+  gap: 1rem;
+  width: max-content;
+}
+
+/* Artwork Items */
+.artwork-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  min-width: 0; /* Flexbox fix */
+}
+
+.artwork-item:hover {
+  transform: scale(1.05);
+  opacity: 0.8;
+}
+
+.artwork-thumbnail {
+  height: 35vh;
+  width: auto;
+  object-fit: contain;
+  border: 1px solid var(--color-border);
+}
+
+.artwork-info {
+  margin-top: 1rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #3178c6aa);
+.artwork-title {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
 }
 
-.card {
-  padding: 2em;
+.artwork-artist {
+  font-size: 0.9rem;
+  opacity: 0.7;
 }
 
-.read-the-docs {
-  color: #888;
+/* Artwork Detail Page */
+.artwork-container {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none; /* Firefox */
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.artwork-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.artwork-track {
+  display: flex;
+  height: 100vh;
+  width: max-content;
+  align-items: center;
+}
+
+.artwork-info-section {
+  width: 50vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.artwork-header {
+  text-align: center;
+}
+
+.artwork-info-section .artwork-title {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+
+.artwork-info-section .artwork-artist {
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+.artwork-description {
+  max-width: 30ch;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.artwork-figure {
+  width: 50vw;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2rem;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.artwork-image {
+  height: 98vh;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Scrollbar非表示は上記で設定済み */
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
   }
-  a:hover {
-    color: #747bff;
+  
+  .site-title {
+    font-size: 1.5rem;
   }
-  button {
-    background-color: #f9f9f9;
+  
+  .gallery-container {
+    padding-top: 6rem;
+  }
+  
+  .gallery-track {
+    height: calc(100vh - 6rem);
+    padding: 0 1rem;
+    gap: 2rem;
+  }
+  
+  .artwork-thumbnail {
+    height: 60vh;
   }
 }
