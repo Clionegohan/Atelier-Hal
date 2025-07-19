@@ -104,5 +104,13 @@ export const artworks: Artwork[] = [
     image: "/assets/artworks/portrait-collection-2.jpg",
     artist: "春",
     slug: "portrait-collection-2"
+  },
+  {
+    id: 14,
+    title: "ニコ",
+    description: "新しいキャラクターデザインの探求。繊細な線画と色彩表現が特徴的な作品。",
+    image: "/assets/artworks/nico.png",
+    artist: "春",
+    slug: "nico"
   }
 ];
