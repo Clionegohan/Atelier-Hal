@@ -1,24 +1,126 @@
 import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import { artworks } from './data'
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+const app = document.querySelector<HTMLDivElement>('#app')!
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+// ギャラリーページの表示
+function showGalleryPage(): void {
+  document.title = 'Atelier Hal'
+  
+  app.innerHTML = `
+    <div class="portfolio-title">ATELIER HAL</div>
+    <main class="gallery-container">
+      <div class="gallery-track" id="gallery-track">
+        ${artworks.map(artwork => `
+          <article class="artwork-item" data-slug="${artwork.slug}">
+            <img 
+              src="${artwork.image}" 
+              alt="${artwork.title}"
+              class="artwork-thumbnail"
+              loading="lazy"
+            />
+          </article>
+        `).join('')}
+      </div>
+    </main>
+  `
+  
+  // 作品クリックイベント
+  document.querySelectorAll('.artwork-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const slug = item.getAttribute('data-slug')
+      if (slug) {
+        navigateTo(`/artwork/${slug}`)
+      }
+    })
+  })
+  
+  // 縦スクロールを横スクロールに変換
+  const galleryContainer = document.querySelector('.gallery-container')
+  if (galleryContainer) {
+    galleryContainer.addEventListener('wheel', (e: Event) => {
+      const wheelEvent = e as WheelEvent
+      wheelEvent.preventDefault()
+      galleryContainer.scrollLeft += wheelEvent.deltaY
+    })
+  }
+}
+
+// 作品詳細ページの表示
+function showArtworkPage(slug: string): void {
+  const artwork = artworks.find(a => a.slug === slug)
+  
+  if (!artwork) {
+    navigateTo('/')
+    return
+  }
+  
+  document.title = `${artwork.title} - Atelier Hal`
+  
+  app.innerHTML = `
+    <main class="artwork-container">
+      <div class="artwork-track">
+        <section class="artwork-info-section">
+          <header class="artwork-header">
+            <h2 class="artwork-title">${artwork.title}</h2>
+            <p class="artwork-artist">${artwork.artist}</p>
+          </header>
+          
+          <div class="artwork-description">
+            <p>${artwork.description}</p>
+          </div>
+        </section>
+        
+        <figure class="artwork-figure">
+          <img 
+            class="artwork-image" 
+            src="${artwork.image}"
+            alt="${artwork.title}"
+            loading="lazy"
+          />
+        </figure>
+      </div>
+    </main>
+  `
+  
+  // 横スクロールでテキスト → 画像移動
+  const artworkContainer = document.querySelector('.artwork-container')
+  if (artworkContainer) {
+    artworkContainer.addEventListener('wheel', (e: Event) => {
+      const wheelEvent = e as WheelEvent
+      wheelEvent.preventDefault()
+      artworkContainer.scrollLeft += wheelEvent.deltaY
+    })
+  }
+}
+
+// ナビゲーション関数
+function navigateTo(path: string): void {
+  history.pushState(null, '', path)
+  handleRoute()
+}
+
+// ルート処理
+function handleRoute(): void {
+  const path = window.location.pathname
+  
+  if (path === '/') {
+    showGalleryPage()
+  } else if (path.startsWith('/artwork/')) {
+    const slug = path.split('/artwork/')[1]
+    showArtworkPage(slug)
+  } else {
+    // 未知のパスはホームにリダイレクト
+    navigateTo('/')
+  }
+}
+
+// 初期化
+document.addEventListener('DOMContentLoaded', () => {
+  handleRoute()
+})
+
+// ブラウザの戻る/進むボタン対応
+window.addEventListener('popstate', () => {
+  handleRoute()
+})
