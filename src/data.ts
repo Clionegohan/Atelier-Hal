@@ -112,5 +112,13 @@ export const artworks: Artwork[] = [
     image: "/assets/artworks/nico.png",
     artist: "春",
     slug: "nico"
+  },
+  {
+    id: 15,
+    title: "ボケー",
+    description: "ボケ効果を活用した抽象的な表現。光と影の美しいコントラストを描いた実験的作品。",
+    image: "/assets/artworks/bokee.png",
+    artist: "春",
+    slug: "bokee"
   }
 ];
