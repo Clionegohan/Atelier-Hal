@@ -8,7 +8,20 @@ function showGalleryPage(): void {
   document.title = 'Atelier Hal'
   
   app.innerHTML = `
-    <div class="portfolio-title">ATELIER HAL</div>
+    <div class="portfolio-logo">
+      <svg width="280" height="120" viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- ATELIER -->
+        <text x="140" y="45" text-anchor="middle" class="logo-text-main">ATELIER</text>
+        <!-- HAL -->
+        <text x="140" y="85" text-anchor="middle" class="logo-text-sub">HAL</text>
+        <!-- 装飾的な線 -->
+        <line x1="40" y1="60" x2="110" y2="60" class="logo-line"/>
+        <line x1="170" y1="60" x2="240" y2="60" class="logo-line"/>
+        <!-- 小さな装飾 -->
+        <circle cx="30" cy="60" r="2" class="logo-accent"/>
+        <circle cx="250" cy="60" r="2" class="logo-accent"/>
+      </svg>
+    </div>
     <main class="gallery-container">
       <div class="gallery-track" id="gallery-track">
         ${artworks.map(artwork => `
@@ -63,7 +76,6 @@ function showArtworkPage(slug: string): void {
         <section class="artwork-info-section">
           <header class="artwork-header">
             <h2 class="artwork-title">${artwork.title}</h2>
-            <p class="artwork-artist">${artwork.artist}</p>
           </header>
           
           <div class="artwork-description">

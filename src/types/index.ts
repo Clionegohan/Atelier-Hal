@@ -3,6 +3,5 @@ export interface Artwork {
     title: string;
     description: string;
     image: string;
-    artist: string;
     slug: string;
 }
