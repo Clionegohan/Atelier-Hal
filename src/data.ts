@@ -1,108 +1,126 @@
 import { Artwork } from './types';
 
 export const artworks: Artwork[] = [
+  // 1. amatuka
   {
     id: 1,
-    title: "EGO",
-    description: "動的な色彩とエーテルのような光の効果を特徴とした鮮やかなポートレート。",
-    image: "/assets/artworks/ego.jpg",
-    artist: "春",
-    slug: "ego"
+    title: "翼を持つ少女",
+    description: "ところが天使は、彼女にとって最悪な冬を切り抜けたばかりか、春の光を浴びて元気を回復したかのように思われた。",
+    image: "/assets/artworks/artwork001.png",
+    slug: "winged-girl"
   },
+  // 2. bokee
   {
     id: 2,
-    title: "EGO Variant",
-    description: "同じテーマを洗練された構成で探求した別のビジョン。",
-    image: "/assets/artworks/ego-variant.jpg",
-    artist: "春",
-    slug: "ego-variant"
+    title: "光の残響",
+    description: "ぼんやりと浮かび上がる記憶の断片。現実と夢の狭間で踊る、優しい光の粒子たち。",
+    image: "/assets/artworks/artwork002.png",
+    slug: "echo-of-light"
   },
+  // 3. gira
   {
     id: 3,
-    title: "Music Somunia",
-    description: "音楽的な夢想の本質を捉えた幻想的なイラストレーション。",
-    image: "/assets/artworks/music-somunia.jpg",
-    artist: "春",
-    slug: "music-somunia"
+    title: "黄金の瞳",
+    description: "太陽を宿した少女の眼差し。温かな光の中に秘められた、揺るぎない意志の強さ。",
+    image: "/assets/artworks/artwork003.png",
+    slug: "golden-eyes"
   },
+  // 4. kohaku
   {
     id: 4,
-    title: "SHE WAS",
-    description: "アイデンティティと記憶のテーマを探求した感情的なポートレート。",
-    image: "/assets/artworks/she-was.jpg",
-    artist: "春",
-    slug: "she-was"
+    title: "琥珀色の慈愛",
+    description: "母なる愛に包まれた安らぎの時間。黄金の瞳に映る、すべてを受け入れる優しさ。",
+    image: "/assets/artworks/artwork004.png",
+    slug: "amber-compassion"
   },
+  // 5. giro
   {
     id: 5,
-    title: "Visions Edge",
-    description: "視覚的ストーリーテリングの境界を押し広げる現代デジタルアート。",
-    image: "/assets/artworks/visions-edge.jpg",
-    artist: "春",
-    slug: "visions-edge"
+    title: "静寂の眼差し",
+    description: "何も語らず、すべてを見通す瞳。深い静寂の中に宿る、言葉を超えた理解と共感。",
+    image: "/assets/artworks/artwork005.png",
+    slug: "silent-gaze"
   },
+  // 6. queen
   {
     id: 6,
-    title: "雷コレクション",
-    description: "自然の力と現象を探求した初のアートコレクション。",
-    image: "/assets/artworks/thunder-collection.jpeg",
-    artist: "春",
-    slug: "thunder-collection"
+    title: "女王の孤独",
+    description: "華やかな装いの下に隠された、深い孤独感。責任という重い冠を戴く者の、静かな決意。",
+    image: "/assets/artworks/artwork006.png",
+    slug: "queens-solitude"
   },
+  // 7. bukubuku
   {
     id: 7,
-    title: "雷メディア",
-    description: "雷シリーズからのメディア展示作品。",
-    image: "/assets/artworks/thunder-media.jpeg",
-    artist: "春",
-    slug: "thunder-media"
+    title: "水中の夢",
+    description: "水泡に包まれた幻想的な世界。現実の重力から解放された、軽やかで自由な魂の踊り。",
+    image: "/assets/artworks/artwork007.png",
+    slug: "underwater-dream"
   },
+  // 8. bunpu
   {
     id: 8,
-    title: "雷リリース",
-    description: "雷コレクションの公式リリースアートワーク。",
-    image: "/assets/artworks/thunder-release.jpeg",
-    artist: "春",
-    slug: "thunder-release"
+    title: "秩序の美学",
+    description: "規則正しく配置された美しいパターン。混沌の中から生まれる調和という名の芸術。",
+    image: "/assets/artworks/artwork008.png",
+    slug: "aesthetic-of-order"
   },
+  // 9. ningyo
   {
     id: 9,
-    title: "忍野忍",
-    description: "物語シリーズのキャラクターイラストレーション。",
-    image: "/assets/artworks/shinobu.jpg",
-    artist: "春",
-    slug: "shinobu"
+    title: "海の歌姫",
+    description: "深海から響く美しい歌声。人の世への憧れを胸に秘めた、永遠の放浪者の物語。",
+    image: "/assets/artworks/artwork009.png",
+    slug: "sea-songstress"
   },
+  // 10. chu
   {
     id: 10,
-    title: "目と雷",
-    description: "ダイナミックな視覚要素を特徴とした個展ポスター。",
-    image: "/assets/artworks/eyes-and-lightning.png",
-    artist: "春",
-    slug: "eyes-and-lightning"
+    title: "初恋の調べ",
+    description: "頬を染める初々しい恋心。小さな唇から溢れる、純粋で無垢な愛情の歌声。",
+    image: "/assets/artworks/artwork010.png",
+    slug: "first-loves-melody"
   },
+  // 11. hatena
   {
     id: 11,
-    title: "ポートレート習作",
-    description: "洗練されたデジタルペインティング技法を披露するキャラクターポートレート。",
-    image: "/assets/artworks/portrait-study.jpg",
-    artist: "春",
-    slug: "portrait-study"
+    title: "無垢な疑問",
+    description: "首をかしげる愛らしい仕草。純真な瞳に映る世界への、尽きることのない好奇心。",
+    image: "/assets/artworks/artwork011.png",
+    slug: "innocent-question"
   },
+  // 12. yurushi
   {
     id: 12,
-    title: "ポートレートコレクション1",
-    description: "キャラクターポートレート習作シリーズの第一作。",
-    image: "/assets/artworks/portrait-collection-1.jpg",
-    artist: "春",
-    slug: "portrait-collection-1"
+    title: "慈悲の光",
+    description: "すべてを包み込む温かな光。過ちを受け入れ、愛で癒やす慈悲深い心の表れ。",
+    image: "/assets/artworks/artwork012.png",
+    slug: "light-of-mercy"
   },
+  // 13. gyau
   {
     id: 13,
-    title: "ポートレートコレクション2",
-    description: "キャラクターデザインへの異なるアーティスティックアプローチを探求した第二作。",
-    image: "/assets/artworks/portrait-collection-2.jpg",
-    artist: "春",
-    slug: "portrait-collection-2"
+    title: "天使の戦士",
+    description: "戦場に舞い散る白い羽根。天使と悪魔の狭間で戦う、勇敢な魂の雄叫び。",
+    image: "/assets/artworks/artwork013.png",
+    slug: "angel-warrior"
+  },
+  // 14. karasu
+  {
+    id: 14,
+    title: "影の守護者",
+    description: "静寂に包まれた黒髪の少女。知恵と孤独を纏い、運命の糸を紡ぐ神秘的な存在。",
+    image: "/assets/artworks/artwork014.png",
+    slug: "shadow-guardian"
   }
 ];
+
+// ランダム並び替え関数
+export function getRandomizedArtworks(): Artwork[] {
+  const shuffled = [...artworks];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
