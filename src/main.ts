@@ -57,13 +57,69 @@ function showGalleryPage(randomize: boolean = false): void {
     })
   })
   
-  // 縦スクロールを横スクロールに変換
+  // 滑らかな横スクロール（加速度付き）
   const galleryContainer = document.querySelector('.gallery-container')
   if (galleryContainer) {
+    let isScrolling = false
+    let currentScrollLeft = galleryContainer.scrollLeft
+    let targetScrollLeft = galleryContainer.scrollLeft
+    
+    // 加速度関連の変数
+    let scrollVelocity = 1.0
+    let lastScrollTime = 0
+    const accelerationFactor = 1.4  // 加速倍率
+    const maxVelocity = 5.0          // 最大速度倍率
+    const resetDelay = 200           // リセット時間（ms）
+    
+    // スムーズスクロールアニメーション
+    const smoothScroll = () => {
+      if (!isScrolling) return
+      
+      const diff = targetScrollLeft - currentScrollLeft
+      const step = diff * 0.05
+      
+      if (Math.abs(step) < 0.1) {
+        currentScrollLeft = targetScrollLeft
+        galleryContainer.scrollLeft = currentScrollLeft
+        isScrolling = false
+        return
+      }
+      
+      currentScrollLeft += step
+      galleryContainer.scrollLeft = currentScrollLeft
+      requestAnimationFrame(smoothScroll)
+    }
+    
     galleryContainer.addEventListener('wheel', (e: Event) => {
       const wheelEvent = e as WheelEvent
       wheelEvent.preventDefault()
-      galleryContainer.scrollLeft += wheelEvent.deltaY
+      
+      // 加速度計算
+      const now = Date.now()
+      if (now - lastScrollTime < resetDelay) {
+        // 連続スクロール：加速度アップ
+        scrollVelocity = Math.min(maxVelocity, scrollVelocity * accelerationFactor)
+      } else {
+        // 時間が空いた：加速度リセット
+        scrollVelocity = 1.0
+      }
+      lastScrollTime = now
+      
+      // 加速度を適用したスクロール量
+      const baseScrollAmount = wheelEvent.deltaY * 1.0
+      const scrollAmount = baseScrollAmount * scrollVelocity
+      
+      targetScrollLeft = Math.max(0, targetScrollLeft + scrollAmount)
+      
+      // 最大スクロール位置を制限
+      const maxScroll = galleryContainer.scrollWidth - galleryContainer.clientWidth
+      targetScrollLeft = Math.min(maxScroll, targetScrollLeft)
+      
+      if (!isScrolling) {
+        isScrolling = true
+        currentScrollLeft = galleryContainer.scrollLeft
+        smoothScroll()
+      }
     })
   }
   
@@ -131,13 +187,66 @@ function showArtworkPage(slug: string): void {
     </main>
   `
   
-  // 横スクロールでテキスト → 画像移動
+  // 滑らかな横スクロール（作品詳細ページ・加速度付き）
   const artworkContainer = document.querySelector('.artwork-container')
   if (artworkContainer) {
+    let isScrolling = false
+    let currentScrollLeft = artworkContainer.scrollLeft
+    let targetScrollLeft = artworkContainer.scrollLeft
+    
+    // 加速度関連の変数
+    let scrollVelocity = 1.0
+    let lastScrollTime = 0
+    const accelerationFactor = 1.3  // 詳細ページは少し控えめ
+    const maxVelocity = 3.0          // 詳細ページは最大速度も控えめ
+    const resetDelay = 200
+    
+    // スムーズスクロールアニメーション
+    const smoothScroll = () => {
+      if (!isScrolling) return
+      
+      const diff = targetScrollLeft - currentScrollLeft
+      const step = diff * 0.05
+      
+      if (Math.abs(step) < 0.1) {
+        currentScrollLeft = targetScrollLeft
+        artworkContainer.scrollLeft = currentScrollLeft
+        isScrolling = false
+        return
+      }
+      
+      currentScrollLeft += step
+      artworkContainer.scrollLeft = currentScrollLeft
+      requestAnimationFrame(smoothScroll)
+    }
+    
     artworkContainer.addEventListener('wheel', (e: Event) => {
       const wheelEvent = e as WheelEvent
       wheelEvent.preventDefault()
-      artworkContainer.scrollLeft += wheelEvent.deltaY
+      
+      // 加速度計算
+      const now = Date.now()
+      if (now - lastScrollTime < resetDelay) {
+        scrollVelocity = Math.min(maxVelocity, scrollVelocity * accelerationFactor)
+      } else {
+        scrollVelocity = 1.0
+      }
+      lastScrollTime = now
+      
+      // 加速度を適用したスクロール量
+      const baseScrollAmount = wheelEvent.deltaY * 0.8
+      const scrollAmount = baseScrollAmount * scrollVelocity
+      
+      targetScrollLeft = Math.max(0, targetScrollLeft + scrollAmount)
+      
+      const maxScroll = artworkContainer.scrollWidth - artworkContainer.clientWidth
+      targetScrollLeft = Math.min(maxScroll, targetScrollLeft)
+      
+      if (!isScrolling) {
+        isScrolling = true
+        currentScrollLeft = artworkContainer.scrollLeft
+        smoothScroll()
+      }
     })
   }
   
@@ -152,6 +261,12 @@ function showArtworkPage(slug: string): void {
 
 // ナビゲーション関数（暗幕アニメーション付き）
 function navigateTo(path: string): void {
+  // ロゴを即座に非表示にする
+  const logo = document.querySelector('.portfolio-logo')
+  if (logo) {
+    logo.classList.remove('visible')
+  }
+  
   // 暗幕アニメーションを開始
   const curtain = document.getElementById('curtain-overlay')
   if (curtain) {

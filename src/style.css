@@ -77,8 +77,8 @@ html {
 /* Portfolio Logo */
 .portfolio-logo {
   position: fixed;
-  top: 12rem;
-  left: 5rem;
+  top: 15%;
+  left: 8%;
   z-index: 10001; /* 暗幕より上に表示 */
   opacity: 0;
   transition: opacity 1s ease-in-out;
@@ -89,7 +89,7 @@ html {
 }
 
 .portfolio-logo svg {
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8)) brightness(1.3) contrast(1.3);
 }
 
 .logo-text-main {
@@ -134,6 +134,7 @@ html {
   cursor: pointer;
   transition: opacity 0.3s ease, background-color 0.3s ease;
   border-radius: 4px;
+  display: none;
 }
 
 .random-button:hover {
@@ -207,7 +208,7 @@ html {
 }
 
 .artwork-item:hover .artwork-thumbnail {
-  filter: brightness(1.1) contrast(1.1) grayscale(0%); /* ホバー時は明るくカラーに */
+  filter: grayscale(0%); /* ホバー時は自然な色合いに */
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); /* ホバー時により深い影 */
 }
 
@@ -289,10 +290,13 @@ html {
 }
 
 .artwork-description {
-  max-width: 30ch;
+  max-width: 50ch;
   text-align: center;
   font-size: 1.1rem;
   line-height: 1.8;
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  padding-top: 1rem;
+  margin-top: -0.5rem;
 }
 
 .artwork-figure {
@@ -313,6 +317,7 @@ html {
 }
 
 /* Scrollbar非表示は上記で設定済み */
+
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -336,5 +341,51 @@ html {
   
   .artwork-thumbnail {
     height: 60vh;
+  }
+  
+  /* 作品詳細ページのスマホ対応 */
+  .artwork-track {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  .artwork-info-section {
+    width: 100vw;
+    height: auto;
+    min-height: 50vh;
+    padding: 2rem 1rem;
+  }
+  
+  .artwork-info-section .artwork-title {
+    font-size: 2rem;
+  }
+  
+  .artwork-description {
+    max-width: 90vw;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .artwork-figure {
+    width: 100vw;
+    height: auto;
+    min-height: 50vh;
+    padding: 1rem;
+    justify-content: center;
+  }
+  
+  .artwork-image {
+    height: auto;
+    max-height: 60vh;
+    width: 90vw;
+    object-fit: contain;
+  }
+  
+  /* ロゴサイズ調整（小画面時） */
+  .portfolio-logo svg {
+    width: 200px;
+    height: 85px;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8)) brightness(1.3) contrast(1.3);
   }
 }
