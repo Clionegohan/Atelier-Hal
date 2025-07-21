@@ -1,13 +1,34 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <title>Atelier Hal</title>
+    <meta name="description" content="春の作品を展示するWeb画廊" />
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <!-- SPAコンテンツがJavaScriptで動的に生成される -->
+    </div>
+    
+    <script>
+      // GitHub Pages SPA対応: 404.htmlからのリダイレクトパラメータを処理
+      (function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirectPath = urlParams.get('p');
+        
+        if (redirectPath) {
+          // 404.htmlからリダイレクトされた場合、正しいパスにhistory.replaceStateで設定
+          const newPath = redirectPath + window.location.hash;
+          history.replaceState(null, null, newPath);
+        }
+      })();
+    </script>
+    
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
