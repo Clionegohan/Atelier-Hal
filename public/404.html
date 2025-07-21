@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atelier Hal</title>
+    <script>
+      // GitHub Pages SPA対応: 未知のパスをindex.htmlにリダイレクト
+      const path = window.location.pathname;
+      const query = window.location.search;
+      const hash = window.location.hash;
+      
+      // リポジトリ名を取得（GitHub Pagesの場合）
+      const repoName = '/Atelier-Hal';
+      
+      // パスがリポジトリ名で始まる場合は、それを除去
+      let cleanPath = path;
+      if (path.startsWith(repoName)) {
+        cleanPath = path.substring(repoName.length);
+      }
+      
+      // index.htmlにリダイレクトし、元のパスを?p=パラメータとして保持
+      if (cleanPath !== '/') {
+        const redirectPath = repoName + '/?p=' + encodeURIComponent(cleanPath) + query + hash;
+        window.location.replace(redirectPath);
+      } else {
+        // ルートパスの場合は直接index.htmlにリダイレクト
+        window.location.replace(repoName + '/');
+      }
+    </script>
+  </head>
+  <body>
+    <p>リダイレクト中...</p>
+  </body>
+</html>
