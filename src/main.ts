@@ -1,11 +1,13 @@
 import './style.css'
-import { artworks } from './data'
+import { artworks, getRandomizedArtworks } from './data'
 
 const app = document.querySelector<HTMLDivElement>('#app')!
 
 // ギャラリーページの表示
-function showGalleryPage(): void {
+function showGalleryPage(randomize: boolean = false): void {
   document.title = 'Atelier Hal'
+  
+  const displayArtworks = randomize ? getRandomizedArtworks() : artworks
   
   app.innerHTML = `
     <div class="portfolio-logo">
@@ -22,9 +24,13 @@ function showGalleryPage(): void {
         <circle cx="250" cy="60" r="2" class="logo-accent"/>
       </svg>
     </div>
+    
+    <!-- ランダム並び替えボタン -->
+    <button class="random-button" id="random-button">ランダム</button>
+    
     <main class="gallery-container">
       <div class="gallery-track" id="gallery-track">
-        ${artworks.map(artwork => `
+        ${displayArtworks.map(artwork => `
           <article class="artwork-item" data-slug="${artwork.slug}">
             <img 
               src="${artwork.image}" 
@@ -55,6 +61,14 @@ function showGalleryPage(): void {
       const wheelEvent = e as WheelEvent
       wheelEvent.preventDefault()
       galleryContainer.scrollLeft += wheelEvent.deltaY
+    })
+  }
+  
+  // ランダムボタンのイベントリスナー
+  const randomButton = document.getElementById('random-button')
+  if (randomButton) {
+    randomButton.addEventListener('click', () => {
+      showGalleryPage(true)
     })
   }
 }

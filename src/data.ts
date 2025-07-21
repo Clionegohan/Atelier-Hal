@@ -4,16 +4,16 @@ export const artworks: Artwork[] = [
   // 1. amatuka
   {
     id: 1,
-    title: "甘塚",
-    description: "甘美で繊細な表現を追求した作品。優しさと温もりを込めたキャラクターアート。",
+    title: "飽和",
+    description: "色彩が限界まで押し上げられた瞬間。純度の頂点で静寂と狂乱が交錯する。",
     image: "/assets/artworks/amatuka.png",
     slug: "amatuka"
   },
-  // 2. bokee  
+  // 2. bokee
   {
     id: 2,
-    title: "ボケー",
-    description: "ボケ効果を活用した抽象的な表現。光と影の美しいコントラストを描いた実験的作品。",
+    title: "星界よりの使者",
+    description: "遥か彼方から届いた光。焦点の向こう側に広がる無限の可能性。",
     image: "/assets/artworks/bokee.png",
     slug: "bokee"
   },
@@ -21,7 +21,7 @@ export const artworks: Artwork[] = [
   {
     id: 3,
     title: "ギラ",
-    description: "きらめく光と輝きを表現した抽象的作品。光の動きと反射の美しさを追求。",
+    description: "眩しすぎる光が網膜に焼き付く。輝きの中に潜む激情と美。",
     image: "/assets/artworks/gira.png",
     slug: "gira"
   },
@@ -29,7 +29,7 @@ export const artworks: Artwork[] = [
   {
     id: 4,
     title: "琥珀",
-    description: "琥珀色の温かみと透明感を表現。時間の流れと記憶をテーマにした詩的作品。",
+    description: "時間が結晶化した瞬間。透明な黄金に封じ込められた永遠の記憶。",
     image: "/assets/artworks/kohaku.png",
     slug: "kohaku"
   },
@@ -37,7 +37,7 @@ export const artworks: Artwork[] = [
   {
     id: 5,
     title: "ギロ",
-    description: "楽器のギロからインスピレーションを得た音楽的ビジュアルアート。リズムと形の融合。",
+    description: "擦れ合う音が生み出すリズム。楽器と魂が共鳴する原始的な調べ。",
     image: "/assets/artworks/giro.png",
     slug: "giro"
   },
@@ -45,72 +45,82 @@ export const artworks: Artwork[] = [
   {
     id: 6,
     title: "クイーン",
-    description: "威厳と優雅さを併せ持つ女王をテーマにしたキャラクターアート。",
+    description: "王座に君臨する者の威厳。権力と孤独が織りなす美しき矛盾。",
     image: "/assets/artworks/queen.png",
     slug: "queen"
   },
   // 7. bukubuku
   {
     id: 7,
-    title: "ブクブク",
-    description: "泡立つような軽やかな表現。動きと流動性を視覚化した抽象的作品。",
+    title: "追想",
+    description: "輪郭が溶解し、境界が消失する。そこに安息がある。",
     image: "/assets/artworks/bukubuku.png",
     slug: "bukubuku"
   },
-  // 8. nico
+  // 8. bunpu
   {
     id: 8,
-    title: "ニコ",
-    description: "新しいキャラクターデザインの探求。繊細な線画と色彩表現が特徴的な作品。",
-    image: "/assets/artworks/nico.png",
-    slug: "nico"
-  },
-  // 9. aka
-  {
-    id: 9,
-    title: "アカ",
-    description: "赤色をテーマにした情熱的な表現。色彩の力強さと感情の深さを探求した作品。",
-    image: "/assets/artworks/aka.png",
-    slug: "aka"
-  },
-  // 10. bunpu
-  {
-    id: 10,
     title: "分布",
-    description: "データの分布と可視化をアートとして表現した実験的作品。統計美学の探求。",
+    description: "散らばるデータの中に見出される秩序。統計が語る美しき真理。",
     image: "/assets/artworks/bunpu.png",
     slug: "bunpu"
   },
-  // 11. ningyo
+  // 9. ningyo
   {
-    id: 11,
+    id: 9,
     title: "人魚",
-    description: "神秘的な人魚をテーマにした幻想的な作品。水の世界の美しさと儚さを表現。",
+    description: "水と陸の境界で歌う者。幻想と現実を繋ぐ神秘の存在。",
     image: "/assets/artworks/ningyo.png",
     slug: "ningyo"
   },
-  // 12. chu
+  // 10. chu
   {
-    id: 12,
-    title: "チュ",
-    description: "愛らしい表情とキスをテーマにした可愛らしい作品。純粋な愛情表現の探求。",
+    id: 10,
+    title: "ちぅ",
+    description: "唇が触れ合う瞬間の甘美。純真な愛情の最も素直な表現。",
     image: "/assets/artworks/chu.png",
     slug: "chu"
   },
-  // 13. hatena
+  // 11. hatena
   {
-    id: 13,
-    title: "ハテナ",
-    description: "疑問符をモチーフにした探究心あふれる作品。未知への好奇心を視覚化。",
+    id: 11,
+    title: "？",
+    description: "疑問という名の探究心。知ることへの渇望が生み出す美しき混沌。",
     image: "/assets/artworks/hatena.png",
     slug: "hatena"
   },
-  // 14. yurushi
+  // 12. yurushi
   {
-    id: 14,
-    title: "ユルシ",
-    description: "許しと寛容をテーマにした心温まる作品。優しさと理解の大切さを表現。",
+    id: 12,
+    title: "赦し",
+    description: "心の重荷を解き放つ瞬間。寛容という名の究極の愛。",
     image: "/assets/artworks/yurushi.png",
     slug: "yurushi"
+  },
+  // 13. gyau
+  {
+    id: 13,
+    title: "ギャウ",
+    description: "獣の叫び声が響く瞬間。原始的な本能と野性の美しさ。",
+    image: "/assets/artworks/gyau.png",
+    slug: "gyau"
+  },
+  // 14. karasu
+  {
+    id: 14,
+    title: "烏",
+    description: "黒き翼に宿る知恵。暗闇の使者が運ぶ神秘のメッセージ。",
+    image: "/assets/artworks/karasu.png",
+    slug: "karasu"
   }
 ];
+
+// ランダム並び替え関数
+export function getRandomizedArtworks(): Artwork[] {
+  const shuffled = [...artworks];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
