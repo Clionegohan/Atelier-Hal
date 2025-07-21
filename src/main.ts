@@ -10,6 +10,9 @@ function showGalleryPage(randomize: boolean = false): void {
   const displayArtworks = randomize ? getRandomizedArtworks() : artworks
   
   app.innerHTML = `
+    <!-- 暗幕オーバーレイ -->
+    <div class="curtain-overlay active" id="curtain-overlay"></div>
+    
     <div class="portfolio-logo">
       <svg width="280" height="120" viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg">
         <!-- ATELIER -->
@@ -44,7 +47,7 @@ function showGalleryPage(randomize: boolean = false): void {
     </main>
   `
   
-  // 作品クリックイベント
+  // 作品クリックイベント（暗幕アニメーション付き）
   document.querySelectorAll('.artwork-item').forEach(item => {
     item.addEventListener('click', () => {
       const slug = item.getAttribute('data-slug')
@@ -71,6 +74,22 @@ function showGalleryPage(randomize: boolean = false): void {
       showGalleryPage(true)
     })
   }
+  
+  // ロゴを早めに表示
+  setTimeout(() => {
+    const logo = document.querySelector('.portfolio-logo')
+    if (logo) {
+      logo.classList.add('visible')
+    }
+  }, 10)
+  
+  // 暗幕をフェードアウト
+  setTimeout(() => {
+    const curtain = document.getElementById('curtain-overlay')
+    if (curtain) {
+      curtain.classList.remove('active')
+    }
+  }, 500)
 }
 
 // 作品詳細ページの表示
@@ -85,6 +104,9 @@ function showArtworkPage(slug: string): void {
   document.title = `${artwork.title} - Atelier Hal`
   
   app.innerHTML = `
+    <!-- 暗幕オーバーレイ -->
+    <div class="curtain-overlay active" id="curtain-overlay"></div>
+    
     <main class="artwork-container">
       <div class="artwork-track">
         <section class="artwork-info-section">
@@ -118,12 +140,32 @@ function showArtworkPage(slug: string): void {
       artworkContainer.scrollLeft += wheelEvent.deltaY
     })
   }
+  
+  // 暗幕をフェードアウト
+  setTimeout(() => {
+    const curtain = document.getElementById('curtain-overlay')
+    if (curtain) {
+      curtain.classList.remove('active')
+    }
+  }, 500)
 }
 
-// ナビゲーション関数
+// ナビゲーション関数（暗幕アニメーション付き）
 function navigateTo(path: string): void {
-  history.pushState(null, '', path)
-  handleRoute()
+  // 暗幕アニメーションを開始
+  const curtain = document.getElementById('curtain-overlay')
+  if (curtain) {
+    curtain.classList.add('active')
+    // 0.5秒後にページ遷移
+    setTimeout(() => {
+      history.pushState(null, '', path)
+      handleRoute()
+    }, 500)
+  } else {
+    // 暗幕がない場合は即座に遷移
+    history.pushState(null, '', path)
+    handleRoute()
+  }
 }
 
 // ルート処理

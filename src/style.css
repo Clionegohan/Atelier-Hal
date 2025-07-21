@@ -79,7 +79,12 @@ html {
   position: fixed;
   top: 12rem;
   left: 5rem;
-  z-index: 100;
+  z-index: 10001; /* 暗幕より上に表示 */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.portfolio-logo.visible {
   opacity: 1;
 }
 
@@ -136,6 +141,27 @@ html {
   opacity: 0.8;
 }
 
+/* 暗幕オーバーレイ */
+.curtain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+  pointer-events: none;
+}
+
+.curtain-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
 /* Gallery Container */
 .gallery-container {
   width: 100vw;
@@ -154,7 +180,7 @@ html {
   align-items: center;
   height: 100vh;
   padding: 0 2rem;
-  gap: 1rem;
+  gap: 2rem; /* より画廊らしい余白 */
   width: max-content;
 }
 
@@ -171,16 +197,18 @@ html {
 
 
 .artwork-thumbnail {
-  height: 35vh;
+  height: 40vh; /* 少し大きく */
   width: auto;
   object-fit: contain;
   border: 1px solid var(--color-border);
-  transition: filter 0.3s ease;
-  filter: brightness(1.0) grayscale(100%); /* 通常時は暗めで白黒 */
+  transition: filter 0.3s ease, box-shadow 0.3s ease;
+  filter: brightness(0.9) grayscale(100%); /* 通常時は暗めで白黒 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* 美術館風の影 */
 }
 
 .artwork-item:hover .artwork-thumbnail {
   filter: brightness(1.1) contrast(1.1) grayscale(0%); /* ホバー時は明るくカラーに */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); /* ホバー時により深い影 */
 }
 
 .artwork-info {
