@@ -52,7 +52,7 @@ function showGalleryPage(randomize: boolean = false): void {
     item.addEventListener('click', () => {
       const slug = item.getAttribute('data-slug')
       if (slug) {
-        navigateTo(`/artwork/${slug}`)
+        navigateTo(`/Atelier-Hal/artworks/${slug}`)
       }
     })
   })
@@ -153,7 +153,7 @@ function showArtworkPage(slug: string): void {
   const artwork = artworks.find(a => a.slug === slug)
   
   if (!artwork) {
-    navigateTo('/')
+    navigateTo('/Atelier-Hal/')
     return
   }
   
@@ -286,15 +286,22 @@ function navigateTo(path: string): void {
 // ルート処理
 function handleRoute(): void {
   const path = window.location.pathname
+  const basePath = '/Atelier-Hal'
   
-  if (path === '/') {
+  // GitHub Pagesのベースパスを除去
+  let cleanPath = path
+  if (path.startsWith(basePath)) {
+    cleanPath = path.substring(basePath.length)
+  }
+  
+  if (cleanPath === '/' || cleanPath === '') {
     showGalleryPage()
-  } else if (path.startsWith('/artwork/')) {
-    const slug = path.split('/artwork/')[1]
+  } else if (cleanPath.startsWith('/artworks/')) {
+    const slug = cleanPath.split('/artworks/')[1]
     showArtworkPage(slug)
   } else {
     // 未知のパスはホームにリダイレクト
-    navigateTo('/')
+    navigateTo('/Atelier-Hal/')
   }
 }
 
