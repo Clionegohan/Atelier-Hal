@@ -3,7 +3,154 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Atelier Hal</title>
+    <title>Atelier Hal - 作品が見つかりません</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        background: #000000;
+        color: #ffffff;
+        font-family: 'Yu Mincho', 'Crimson Text', serif;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      
+      .container {
+        text-align: center;
+        max-width: 600px;
+        padding: 2rem;
+        opacity: 0;
+        animation: fadeIn 1.5s ease-out forwards;
+      }
+      
+      .logo {
+        margin-bottom: 3rem;
+        opacity: 0;
+        animation: logoFadeIn 2s ease-out 0.5s forwards;
+      }
+      
+      .logo svg {
+        width: 200px;
+        height: auto;
+      }
+      
+      .logo-text-main {
+        font-family: 'Crimson Text', serif;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 8px;
+        fill: #ffffff;
+      }
+      
+      .logo-text-sub {
+        font-family: 'Crimson Text', serif;
+        font-size: 24px;
+        font-weight: 400;
+        letter-spacing: 12px;
+        fill: #ffffff;
+      }
+      
+      .logo-line {
+        stroke: #ffffff;
+        stroke-width: 1;
+        opacity: 0.6;
+      }
+      
+      .logo-accent {
+        fill: #ffffff;
+        opacity: 0.8;
+      }
+      
+      .error-message {
+        margin-bottom: 2rem;
+        opacity: 0;
+        animation: textFadeIn 2s ease-out 1s forwards;
+      }
+      
+      .error-title {
+        font-size: 2rem;
+        font-weight: 300;
+        margin-bottom: 1rem;
+        letter-spacing: 4px;
+      }
+      
+      .error-description {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        opacity: 0.8;
+        letter-spacing: 2px;
+      }
+      
+      .redirect-info {
+        margin-top: 3rem;
+        font-size: 0.9rem;
+        opacity: 0.6;
+        letter-spacing: 1px;
+        opacity: 0;
+        animation: redirectFadeIn 2s ease-out 1.5s forwards;
+      }
+      
+      .loading-dots {
+        display: inline-block;
+        margin-left: 0.5rem;
+      }
+      
+      .loading-dots::after {
+        content: '';
+        animation: loadingDots 1.5s infinite;
+      }
+      
+      @keyframes fadeIn {
+        to { opacity: 1; }
+      }
+      
+      @keyframes logoFadeIn {
+        to { opacity: 1; }
+      }
+      
+      @keyframes textFadeIn {
+        to { opacity: 1; }
+      }
+      
+      @keyframes redirectFadeIn {
+        to { opacity: 1; }
+      }
+      
+      @keyframes loadingDots {
+        0%, 20% { content: ''; }
+        40% { content: '.'; }
+        60% { content: '..'; }
+        80%, 100% { content: '...'; }
+      }
+      
+      /* 暗幕効果 */
+      .curtain-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000000;
+        z-index: 1000;
+        opacity: 1;
+        transition: opacity 1s ease-out;
+        pointer-events: none;
+      }
+      
+      .curtain-overlay.fade-out {
+        opacity: 0;
+      }
+    </style>
     <script>
       // GitHub Pages SPA対応: 未知のパスをindex.htmlにリダイレクト
       const path = window.location.pathname;
@@ -19,17 +166,58 @@
         cleanPath = path.substring(repoName.length);
       }
       
-      // index.htmlにリダイレクトし、元のパスを?p=パラメータとして保持
-      if (cleanPath !== '/') {
-        const redirectPath = repoName + '/?p=' + encodeURIComponent(cleanPath) + query + hash;
-        window.location.replace(redirectPath);
-      } else {
-        // ルートパスの場合は直接index.htmlにリダイレクト
-        window.location.replace(repoName + '/');
-      }
+      // 3秒後にリダイレクト実行
+      setTimeout(() => {
+        if (cleanPath !== '/') {
+          const redirectPath = repoName + '/?p=' + encodeURIComponent(cleanPath) + query + hash;
+          window.location.replace(redirectPath);
+        } else {
+          // ルートパスの場合は直接index.htmlにリダイレクト
+          window.location.replace(repoName + '/');
+        }
+      }, 3000);
+      
+      // 暗幕フェードアウト
+      document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+          const curtain = document.querySelector('.curtain-overlay');
+          if (curtain) {
+            curtain.classList.add('fade-out');
+          }
+        }, 500);
+      });
     </script>
   </head>
   <body>
-    <p>リダイレクト中...</p>
+    <div class="curtain-overlay"></div>
+    
+    <div class="container">
+      <div class="logo">
+        <svg viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg">
+          <!-- ATELIER -->
+          <text x="140" y="45" text-anchor="middle" class="logo-text-main">ATELIER</text>
+          <!-- HAL -->
+          <text x="140" y="85" text-anchor="middle" class="logo-text-sub">HAL</text>
+          <!-- 装飾的な線 -->
+          <line x1="40" y1="60" x2="110" y2="60" class="logo-line"/>
+          <line x1="170" y1="60" x2="240" y2="60" class="logo-line"/>
+          <!-- 小さな装飾 -->
+          <circle cx="30" cy="60" r="2" class="logo-accent"/>
+          <circle cx="250" cy="60" r="2" class="logo-accent"/>
+        </svg>
+      </div>
+      
+      <div class="error-message">
+        <h1 class="error-title">作品が見つかりません</h1>
+        <p class="error-description">
+          お探しの作品は、まだ制作中か、別の場所に移動されたようです。<br>
+          間もなく画廊の入口へご案内いたします。
+        </p>
+      </div>
+      
+      <div class="redirect-info">
+        画廊へ戻っています<span class="loading-dots"></span>
+      </div>
+    </div>
   </body>
 </html>
