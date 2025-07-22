@@ -91,44 +91,6 @@
         letter-spacing: 2px;
       }
       
-      .navigation {
-        margin-top: 3rem;
-        opacity: 0;
-        animation: navFadeIn 2s ease-out 2s forwards;
-      }
-      
-      .nav-button {
-        display: inline-block;
-        padding: 1rem 2rem;
-        margin: 0 1rem;
-        background: transparent;
-        border: 1px solid #ffffff;
-        color: #ffffff;
-        text-decoration: none;
-        font-family: 'Yu Mincho', 'Crimson Text', serif;
-        font-size: 1rem;
-        letter-spacing: 2px;
-        transition: all 0.3s ease;
-        cursor: pointer;
-      }
-      
-      .nav-button:hover {
-        background: #ffffff;
-        color: #000000;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
-      }
-      
-      .nav-button:active {
-        transform: translateY(0);
-      }
-      
-      .nav-description {
-        margin-top: 2rem;
-        font-size: 0.9rem;
-        opacity: 0.6;
-        letter-spacing: 1px;
-      }
       
       @keyframes fadeIn {
         to { opacity: 1; }
@@ -142,9 +104,6 @@
         to { opacity: 1; }
       }
       
-      @keyframes navFadeIn {
-        to { opacity: 1; }
-      }
       
       /* 暗幕効果 */
       .curtain-overlay {
@@ -179,19 +138,15 @@
         cleanPath = path.substring(repoName.length);
       }
       
-      // 手動リダイレクト関数
-      function redirectToOriginal() {
+      // 自動リダイレクト（8秒後）
+      setTimeout(() => {
         if (cleanPath !== '/') {
           const redirectPath = repoName + '/?p=' + encodeURIComponent(cleanPath) + query + hash;
           window.location.replace(redirectPath);
         } else {
           window.location.replace(repoName + '/');
         }
-      }
-      
-      function goToGallery() {
-        window.location.href = repoName + '/';
-      }
+      }, 8000);
       
       // 暗幕フェードアウト
       document.addEventListener('DOMContentLoaded', () => {
@@ -226,18 +181,8 @@
       <div class="error-message">
         <h1 class="error-title">作品が見つかりません</h1>
         <p class="error-description">
-          お探しの作品は、まだ制作中か、別の場所に移動されたようです。<br>
-          画廊でお待ちしております。
+          お探しの作品は、まだ制作中か、別の場所に移動されたようです。
         </p>
-      </div>
-      
-      <div class="navigation">
-        <button class="nav-button" onclick="goToGallery()">画廊へ戻る</button>
-        <button class="nav-button" onclick="redirectToOriginal()">元のページを復元</button>
-        
-        <div class="nav-description">
-          元のページを復元すると、アクセスしようとしていたURLが復旧されます
-        </div>
       </div>
     </div>
   </body>
