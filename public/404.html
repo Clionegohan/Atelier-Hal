@@ -178,8 +178,70 @@
       }
     </style>
     <script>
-      // 暗幕フェードアウト
       document.addEventListener('DOMContentLoaded', () => {
+        // 横スクロール機能（詳細ページと同じ）
+        const artworkContainer = document.querySelector('.artwork-container')
+        if (artworkContainer) {
+          let isScrolling = false
+          let currentScrollLeft = artworkContainer.scrollLeft
+          let targetScrollLeft = artworkContainer.scrollLeft
+          
+          // 加速度関連の変数
+          let scrollVelocity = 1.0
+          let lastScrollTime = 0
+          const accelerationFactor = 1.3
+          const maxVelocity = 3.0
+          const resetDelay = 200
+          
+          // スムーズスクロールアニメーション
+          const smoothScroll = () => {
+            if (!isScrolling) return
+            
+            const diff = targetScrollLeft - currentScrollLeft
+            const step = diff * 0.05
+            
+            if (Math.abs(step) < 0.1) {
+              currentScrollLeft = targetScrollLeft
+              artworkContainer.scrollLeft = currentScrollLeft
+              isScrolling = false
+              return
+            }
+            
+            currentScrollLeft += step
+            artworkContainer.scrollLeft = currentScrollLeft
+            requestAnimationFrame(smoothScroll)
+          }
+          
+          artworkContainer.addEventListener('wheel', (e) => {
+            e.preventDefault()
+            
+            // 加速度計算
+            const now = Date.now()
+            if (now - lastScrollTime < resetDelay) {
+              scrollVelocity = Math.min(maxVelocity, scrollVelocity * accelerationFactor)
+            } else {
+              scrollVelocity = 1.0
+            }
+            lastScrollTime = now
+            
+            // 加速度を適用したスクロール量
+            const baseScrollAmount = e.deltaY * 0.8
+            const scrollAmount = baseScrollAmount * scrollVelocity
+            
+            targetScrollLeft = Math.max(0, targetScrollLeft + scrollAmount)
+            
+            const maxScroll = artworkContainer.scrollWidth - artworkContainer.clientWidth
+            targetScrollLeft = Math.min(maxScroll, targetScrollLeft)
+            
+            if (!isScrolling) {
+              isScrolling = true
+              currentScrollLeft = artworkContainer.scrollLeft
+              smoothScroll()
+            }
+          })
+        }
+        
+        // 暗幕フェードアウト
         setTimeout(() => {
           const curtain = document.querySelector('.curtain-overlay');
           if (curtain) {
@@ -200,7 +262,7 @@
           </header>
           
           <div class="artwork-description">
-            <p>道に迷われたようです</p>
+            <p>お探しのページは見つかりません。</p>
           </div>
         </section>
         
