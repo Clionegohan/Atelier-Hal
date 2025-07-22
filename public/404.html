@@ -27,80 +27,84 @@
       
       .container {
         text-align: center;
-        max-width: 600px;
-        padding: 2rem;
+        max-width: 700px;
+        padding: 3rem 2rem;
         opacity: 0;
-        animation: fadeIn 1.5s ease-out forwards;
+        animation: fadeIn 2s ease-out forwards;
       }
       
       .logo {
-        margin-bottom: 3rem;
+        margin-bottom: 4rem;
         opacity: 0;
-        animation: logoFadeIn 2s ease-out 0.5s forwards;
+        animation: logoFadeIn 2.5s ease-out 0.8s forwards;
       }
       
       .logo svg {
-        width: 200px;
+        width: 240px;
         height: auto;
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
       }
       
       .logo-text-main {
         font-family: 'Crimson Text', serif;
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 600;
-        letter-spacing: 8px;
+        letter-spacing: 10px;
         fill: #ffffff;
+        opacity: 0.95;
       }
       
       .logo-text-sub {
         font-family: 'Crimson Text', serif;
-        font-size: 24px;
-        font-weight: 400;
-        letter-spacing: 12px;
+        font-size: 28px;
+        font-weight: 300;
+        letter-spacing: 16px;
         fill: #ffffff;
+        opacity: 0.95;
       }
       
       .logo-line {
         stroke: #ffffff;
-        stroke-width: 1;
-        opacity: 0.6;
+        stroke-width: 0.8;
+        opacity: 0.4;
       }
       
       .logo-accent {
         fill: #ffffff;
-        opacity: 0.8;
+        opacity: 0.6;
       }
       
       .error-image {
-        margin-bottom: 2rem;
+        margin: 3rem 0;
         opacity: 0;
-        animation: imageFadeIn 2s ease-out 1s forwards;
+        animation: imageFadeIn 2.5s ease-out 1.5s forwards;
       }
       
       .error-image img {
-        max-width: 300px;
+        max-width: 320px;
         height: auto;
-        border-radius: 4px;
+        border-radius: 8px;
+        filter: drop-shadow(0 8px 32px rgba(0, 0, 0, 0.3));
+        transition: transform 0.3s ease;
+      }
+      
+      .error-image img:hover {
+        transform: scale(1.02);
       }
       
       .error-message {
-        margin-bottom: 2rem;
+        margin-top: 3rem;
         opacity: 0;
-        animation: textFadeIn 2s ease-out 1.5s forwards;
+        animation: textFadeIn 2.5s ease-out 2s forwards;
       }
       
       .error-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: 300;
-        margin-bottom: 1rem;
-        letter-spacing: 4px;
-      }
-      
-      .error-description {
-        font-size: 1.1rem;
-        line-height: 1.6;
-        opacity: 0.8;
-        letter-spacing: 2px;
+        letter-spacing: 6px;
+        line-height: 1.4;
+        color: rgba(255, 255, 255, 0.9);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
       }
       
       
@@ -121,22 +125,55 @@
       }
       
       
-      /* 暗幕効果 */
+      /* 洗練された暗幕効果 */
       .curtain-overlay {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: #000000;
+        background: radial-gradient(ellipse at center, #111111 0%, #000000 100%);
         z-index: 1000;
         opacity: 1;
-        transition: opacity 1s ease-out;
+        transition: opacity 1.5s ease-out;
         pointer-events: none;
       }
       
       .curtain-overlay.fade-out {
         opacity: 0;
+      }
+      
+      /* レスポンシブ対応 */
+      @media (max-width: 768px) {
+        .container {
+          padding: 2rem 1rem;
+          max-width: 90%;
+        }
+        
+        .logo svg {
+          width: 180px;
+        }
+        
+        .error-image img {
+          max-width: 280px;
+        }
+        
+        .error-title {
+          font-size: 1.4rem;
+          letter-spacing: 4px;
+        }
+        
+        .logo {
+          margin-bottom: 2.5rem;
+        }
+        
+        .error-image {
+          margin: 2rem 0;
+        }
+        
+        .error-message {
+          margin-top: 2rem;
+        }
       }
     </style>
     <script>
@@ -199,7 +236,7 @@
       </div>
       
       <div class="error-message">
-        <h1 class="error-title">お探しのページは見つかりませんでした</h1>
+        <h1 class="error-title">道に迷われたようです</h1>
       </div>
     </div>
   </body>
