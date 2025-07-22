@@ -18,94 +18,84 @@
         background: #000000;
         color: #ffffff;
         font-family: 'Yu Mincho', 'Crimson Text', serif;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
       }
       
-      .container {
-        text-align: center;
-        max-width: 700px;
-        padding: 3rem 2rem;
+      .artwork-container {
+        width: 100vw;
+        height: 100vh;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-behavior: smooth;
         opacity: 0;
         animation: fadeIn 2s ease-out forwards;
       }
       
-      .logo {
-        margin-bottom: 4rem;
+      .artwork-track {
+        display: flex;
+        height: 100vh;
+        min-width: 200vw;
+        align-items: stretch;
+      }
+      
+      .artwork-info-section {
+        flex: 0 0 50vw;
+        padding: 4rem 3rem 4rem 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-sizing: border-box;
         opacity: 0;
-        animation: logoFadeIn 2.5s ease-out 0.8s forwards;
+        animation: textFadeIn 2.5s ease-out 0.8s forwards;
       }
       
-      .logo svg {
-        width: 240px;
-        height: auto;
-        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
-      }
-      
-      .logo-text-main {
-        font-family: 'Crimson Text', serif;
-        font-size: 20px;
-        font-weight: 600;
-        letter-spacing: 10px;
-        fill: #ffffff;
-        opacity: 0.95;
-      }
-      
-      .logo-text-sub {
-        font-family: 'Crimson Text', serif;
-        font-size: 28px;
-        font-weight: 300;
-        letter-spacing: 16px;
-        fill: #ffffff;
-        opacity: 0.95;
-      }
-      
-      .logo-line {
-        stroke: #ffffff;
-        stroke-width: 0.8;
-        opacity: 0.4;
-      }
-      
-      .logo-accent {
-        fill: #ffffff;
-        opacity: 0.6;
-      }
-      
-      .error-image {
-        margin: 3rem 0;
+      .artwork-figure {
+        flex: 0 0 50vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        box-sizing: border-box;
         opacity: 0;
         animation: imageFadeIn 2.5s ease-out 1.5s forwards;
       }
       
-      .error-image img {
-        width: 90vw;
-        max-width: 800px;
+      .artwork-image {
+        max-width: 100%;
+        max-height: 90vh;
+        width: auto;
         height: auto;
+        object-fit: contain;
         border-radius: 8px;
         filter: drop-shadow(0 8px 32px rgba(0, 0, 0, 0.3));
-        transition: transform 0.3s ease;
       }
       
-      .error-image img:hover {
-        transform: scale(1.02);
+      .artwork-header {
+        margin-bottom: 3rem;
       }
       
-      .error-message {
-        margin-top: 3rem;
-        opacity: 0;
-        animation: textFadeIn 2.5s ease-out 2s forwards;
-      }
-      
-      .error-title {
-        font-size: 1.8rem;
+      .artwork-title {
+        font-size: 3.5rem;
         font-weight: 300;
-        letter-spacing: 6px;
-        line-height: 1.4;
-        color: rgba(255, 255, 255, 0.9);
+        letter-spacing: 8px;
+        line-height: 1.2;
+        color: rgba(255, 255, 255, 0.95);
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        margin: 0;
+      }
+      
+      .artwork-description {
+        line-height: 2.2;
+      }
+      
+      .artwork-description p {
+        font-size: 1.2rem;
+        letter-spacing: 3px;
+        color: rgba(255, 255, 255, 0.8);
+        margin: 0;
       }
       
       
@@ -113,9 +103,6 @@
         to { opacity: 1; }
       }
       
-      @keyframes logoFadeIn {
-        to { opacity: 1; }
-      }
       
       @keyframes imageFadeIn {
         to { opacity: 1; }
@@ -146,63 +133,42 @@
       
       /* レスポンシブ対応 */
       @media (max-width: 768px) {
-        .container {
-          padding: 2rem 1rem;
-          max-width: 90%;
+        .artwork-track {
+          flex-direction: column;
+          min-width: 100vw;
+          height: auto;
+          min-height: 100vh;
         }
         
-        .logo svg {
-          width: 180px;
+        .artwork-info-section {
+          flex: none;
+          padding: 3rem 2rem;
+          min-height: 50vh;
         }
         
-        .error-image img {
-          width: 85vw;
-          max-width: 500px;
+        .artwork-figure {
+          flex: none;
+          padding: 2rem;
+          min-height: 50vh;
         }
         
-        .error-title {
-          font-size: 1.4rem;
+        .artwork-title {
+          font-size: 2.5rem;
           letter-spacing: 4px;
         }
         
-        .logo {
-          margin-bottom: 2.5rem;
+        .artwork-description p {
+          font-size: 1rem;
+          letter-spacing: 2px;
         }
         
-        .error-image {
-          margin: 2rem 0;
-        }
-        
-        .error-message {
-          margin-top: 2rem;
+        .artwork-container {
+          overflow-y: auto;
+          overflow-x: hidden;
         }
       }
     </style>
     <script>
-      // GitHub Pages SPA対応: 未知のパスをindex.htmlにリダイレクト
-      const path = window.location.pathname;
-      const query = window.location.search;
-      const hash = window.location.hash;
-      
-      // リポジトリ名を取得（GitHub Pagesの場合）
-      const repoName = '/Atelier-Hal';
-      
-      // パスがリポジトリ名で始まる場合は、それを除去
-      let cleanPath = path;
-      if (path.startsWith(repoName)) {
-        cleanPath = path.substring(repoName.length);
-      }
-      
-      // 自動リダイレクト（8秒後）
-      setTimeout(() => {
-        if (cleanPath !== '/') {
-          const redirectPath = repoName + '/?p=' + encodeURIComponent(cleanPath) + query + hash;
-          window.location.replace(redirectPath);
-        } else {
-          window.location.replace(repoName + '/');
-        }
-      }, 8000);
-      
       // 暗幕フェードアウト
       document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
@@ -217,29 +183,27 @@
   <body>
     <div class="curtain-overlay"></div>
     
-    <div class="container">
-      <div class="logo">
-        <svg viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg">
-          <!-- ATELIER -->
-          <text x="140" y="45" text-anchor="middle" class="logo-text-main">ATELIER</text>
-          <!-- HAL -->
-          <text x="140" y="85" text-anchor="middle" class="logo-text-sub">HAL</text>
-          <!-- 装飾的な線 -->
-          <line x1="40" y1="60" x2="110" y2="60" class="logo-line"/>
-          <line x1="170" y1="60" x2="240" y2="60" class="logo-line"/>
-          <!-- 小さな装飾 -->
-          <circle cx="30" cy="60" r="2" class="logo-accent"/>
-          <circle cx="250" cy="60" r="2" class="logo-accent"/>
-        </svg>
+    <main class="artwork-container">
+      <div class="artwork-track">
+        <section class="artwork-info-section">
+          <header class="artwork-header">
+            <h2 class="artwork-title">迷子</h2>
+          </header>
+          
+          <div class="artwork-description">
+            <p>道に迷われたようです</p>
+          </div>
+        </section>
+        
+        <figure class="artwork-figure">
+          <img 
+            class="artwork-image" 
+            src="/Atelier-Hal/assets/artworks/error-page.png"
+            alt="404 - Page Not Found"
+            loading="lazy"
+          />
+        </figure>
       </div>
-      
-      <div class="error-image">
-        <img src="/Atelier-Hal/assets/artworks/error-page.png" alt="404 - Page Not Found" />
-      </div>
-      
-      <div class="error-message">
-        <h1 class="error-title">道に迷われたようです</h1>
-      </div>
-    </div>
+    </main>
   </body>
 </html>
