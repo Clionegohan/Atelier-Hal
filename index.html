@@ -23,7 +23,7 @@
         
         if (redirectPath) {
           // 404.htmlからリダイレクトされた場合、正しいパスにhistory.replaceStateで設定
-          const newPath = redirectPath + window.location.hash;
+          const newPath = '/Atelier-Hal' + redirectPath + window.location.hash;
           history.replaceState(null, null, newPath);
         }
       })();
