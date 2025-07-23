@@ -112,6 +112,14 @@ export const artworks: Artwork[] = [
     description: "静寂に包まれた黒髪の少女。知恵と孤独を纏い、運命の糸を紡ぐ神秘的な存在。",
     image: "/Atelier-Hal/assets/artworks/artwork014.png",
     slug: "shadow-guardian"
+  },
+  // 15. kiro
+  {
+    id: 15,
+    title: "帰路",
+    description: "日暮れの道を歩む少女の後ろ姿。故郷への想いを胸に、静かに歩み続ける旅路の終わり。",
+    image: "/Atelier-Hal/assets/artworks/artwork015.png",
+    slug: "homeward-path"
   }
 ];
 
