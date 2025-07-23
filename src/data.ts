@@ -120,6 +120,30 @@ export const artworks: Artwork[] = [
     description: "日暮れの道を歩む少女の後ろ姿。故郷への想いを胸に、静かに歩み続ける旅路の終わり。",
     image: "/Atelier-Hal/assets/artworks/artwork015.png",
     slug: "homeward-path"
+  },
+  // 16. beniko
+  {
+    id: 16,
+    title: "紅子",
+    description: "鮮やかな紅色に染まった少女の横顔。情熱的な瞳に宿る、燃えるような想いの深さ。",
+    image: "/Atelier-Hal/assets/artworks/artwork016.png",
+    slug: "crimson-girl"
+  },
+  // 17. fukofuku
+  {
+    id: 17,
+    title: "不幸福",
+    description: "悲しみに沈む少女の表情。幸せの対極にある感情の奥深さを静かに物語る姿。",
+    image: "/Atelier-Hal/assets/artworks/artwork017.png",
+    slug: "unhappiness"
+  },
+  // 18. karakuri
+  {
+    id: 18,
+    title: "機械仕掛けと赤い糸",
+    description: "精密な歯車と運命の赤い糸が織りなす幻想。機械的な美しさと人間的な絆の調和。",
+    image: "/Atelier-Hal/assets/artworks/artwork018.png",
+    slug: "clockwork-red-thread"
   }
 ];
 
